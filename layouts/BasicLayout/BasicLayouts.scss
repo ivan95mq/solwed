@@ -1,5 +1,8 @@
 .basic-layout {
     min-height: 100vh;
+    background-image: url("https://s3.eu-west-1.amazonaws.com/solwed.es/IMG_0175.JPG");
+    background-size: cover;
+    background-position: center;
     .content{
         background-color: $background-grey-light;
         height: 100vh;

@@ -40,7 +40,7 @@ function MenuOptions() {
     <M>
       <M.Item>
         <Icon name="user outline" />
-        Mi cuenta
+        <p>Mi cuenta</p>
       </M.Item>
     </M>
   );
