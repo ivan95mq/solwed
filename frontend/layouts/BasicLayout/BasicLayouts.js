@@ -5,8 +5,7 @@ export default function BasicLayouts(props) {
   return (
     <Container fluid className="basic-layout">
       <Header />
-      <Container className="content">Menu</Container>
-      {children}
+      <Container className="content">{children}</Container>
     </Container>
   );
 }

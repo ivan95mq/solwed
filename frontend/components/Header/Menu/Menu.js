@@ -1,7 +1,17 @@
+import { useState } from "react";
 import Link from "next/link";
-import { Container, Menu as M, Grid, Icon, Label } from "semantic-ui-react";
+import { Container, Menu, Grid, Icon, Modal } from "semantic-ui-react";
+import BasicModal from "../../Modal/BasicModal";
+import Auth from "../../Auth/Auth";
 
-export default function Menu() {
+export default function MenuWeb() {
+  const [showModal, setShowModal] = useState(false);
+
+  const [titleModal, settitleModal] = useState("Iniciar Sesion");
+
+  const onShowModal = () => setShowModal(true);
+  const onCloseModal = () => setShowModal(false);
+
   return (
     <div className="menu">
       <Container>
@@ -10,38 +20,47 @@ export default function Menu() {
             <MenuPlatforms />
           </Grid.Column>
           <Grid.Column className="menu__right" width={10}>
-            <MenuOptions />
+            <MenuOptions onShowModal={onShowModal} />
           </Grid.Column>
         </Grid>
       </Container>
+      <BasicModal
+        show={showModal}
+        setShow={setShowModal}
+        title={titleModal}
+        size="small"
+      >
+        <Auth onCloseModal={onCloseModal} />
+      </BasicModal>
     </div>
   );
 }
 
 function MenuPlatforms() {
   return (
-    <M>
+    <Menu>
       <Link href="/play-station">
-        <M.Item as="a">PlayStation</M.Item>
+        <Menu.Item name="P">{"PlayStation"}</Menu.Item>
       </Link>
 
       <Link href="/xbox">
-        <M.Item as="a">XboX</M.Item>
+        <Menu.Item name="X">XboX</Menu.Item>
       </Link>
 
       <Link href="/switch">
-        <M.Item as="a">Switch</M.Item>
+        <Menu.Item name="S">Switch</Menu.Item>
       </Link>
-    </M>
+    </Menu>
   );
 }
-function MenuOptions() {
+function MenuOptions(props) {
+  const { onShowModal } = props;
   return (
-    <M>
-      <M.Item>
+    <Menu>
+      <Menu.Item onClick={onShowModal}>
         <Icon name="user outline" />
-        <p>Mi cuenta</p>
-      </M.Item>
-    </M>
+        Mi cuenta
+      </Menu.Item>
+    </Menu>
   );
 }

@@ -6,7 +6,7 @@ export default function TopBar() {
     <div className="top-bar">
       <Container>
         <Grid className="top-bar">
-          <GridColumn width={8} className="top-bar__left">
+          <GridColumn width={5} className="top-bar__left">
             <Logo />
           </GridColumn>
           <GridColumn width={8} className="top-bar__right">
