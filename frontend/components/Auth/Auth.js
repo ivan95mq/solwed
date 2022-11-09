@@ -12,7 +12,7 @@ export default function Auth(props) {
   };
   const showRegisterForm = () => {
     setShowLogin(false);
-    setTitleModal("Crear Nuevo Usuario");
+    //setTitleModal("Crear Nuevo Usuario");
   };
 
   return showLogin ? (
