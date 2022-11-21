@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Container, Menu, Grid, Icon, Modal } from "semantic-ui-react";
+import { Container, Menu, Grid, Icon, Label } from "semantic-ui-react";
 import BasicModal from "../../Modal/BasicModal";
 import Auth from "../../Auth/Auth";
+import useAuth from "../../../hooks/useAuth";
+import { getMeApi } from "../../../api/user";
 
 export default function MenuWeb() {
   const [showModal, setShowModal] = useState(false);
+  const [titleModal, setTitleModal] = useState("Iniciar Sesion");
 
-  const [titleModal, settitleModal] = useState("Iniciar Sesion");
+  const [user, setUser] = useState(undefined);
+  const { auth, logout } = useAuth();
+
+  useEffect(() => {
+    (async () => {
+      setUser(await getMeApi(logout));
+    })();
+  }, [auth]);
 
   const onShowModal = () => setShowModal(true);
   const onCloseModal = () => setShowModal(false);
@@ -20,7 +30,13 @@ export default function MenuWeb() {
             <MenuPlatforms />
           </Grid.Column>
           <Grid.Column className="menu__right" width={10}>
-            <MenuOptions onShowModal={onShowModal} />
+            {user !== undefined && (
+              <MenuOptions
+                onShowModal={onShowModal}
+                user={user}
+                logout={logout}
+              />
+            )}
           </Grid.Column>
         </Grid>
       </Container>
@@ -30,7 +46,7 @@ export default function MenuWeb() {
         title={titleModal}
         size="small"
       >
-        <Auth onCloseModal={onCloseModal} />
+        <Auth onCloseModal={onCloseModal} setTitleModal={setTitleModal} />
       </BasicModal>
     </div>
   );
@@ -54,13 +70,26 @@ function MenuPlatforms() {
   );
 }
 function MenuOptions(props) {
-  const { onShowModal } = props;
+  const { onShowModal, user, logout } = props;
   return (
     <Menu>
-      <Menu.Item onClick={onShowModal}>
-        <Icon name="user outline" />
-        Mi cuenta
-      </Menu.Item>
+      {user ? (
+        <>
+          <Link href="/orders">
+            <Menu.Item>
+              <Icon name="game" />
+              Mis pedidos
+            </Menu.Item>
+          </Link>
+
+          <Menu.Item onClick={logout}>Cerrar sesion</Menu.Item>
+        </>
+      ) : (
+        <Menu.Item onClick={onShowModal}>
+          <Icon name="user outline" />
+          Mi cuenta
+        </Menu.Item>
+      )}
     </Menu>
   );
 }

@@ -7,16 +7,19 @@ export default function Auth(props) {
   const [showLogin, setShowLogin] = useState(true);
 
   const showLoginForm = () => {
-    setShowLogin(true);
     setTitleModal("Iniciar Sesión");
+    setShowLogin(true);
   };
   const showRegisterForm = () => {
+    setTitleModal("Crear Nuevo Usuario");
     setShowLogin(false);
-    //setTitleModal("Crear Nuevo Usuario");
   };
 
   return showLogin ? (
-    <LoginForms showRegisterForm={showRegisterForm} />
+    <LoginForms
+      showRegisterForm={showRegisterForm}
+      onCloseModal={onCloseModal}
+    />
   ) : (
     <RegisterForm showLoginForms={showLoginForm} />
   );

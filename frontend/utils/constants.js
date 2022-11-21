@@ -1,5 +1,6 @@
-export const BASE_PATH = "https://localhost:1337";
+export const BASE_PATH = "http://localhost:1337/api";
 export const TOKEN = "token";
+export const TOKEN_STRAPI =
+  "316f2d0900e7c84a57a5f84181e1b9f1bebc49225ebc863c459e160c1d423eb5366e66edd385809bb43246ad80fa56521864ff8f0676cfaa4fe05d666fb3630246982ab5dd4b973151e922124a941e53edfed8b33d5a293729b6ca1f35aeba3af6a68829b6165b98524de276decadf8cbc67efcb8fd55741a134478ab00d441a";
 export const CART = "cart";
-export const STRIPE_TOKEN =
-  "pk_test_51HkF5rLlg8czBHMMsWjtoCTXXsNDB6JNmtzHs7Ai3MeOkAnKmhQpmtZUnLbZF5CepEdFFaiDO3JcXReuXsjQkoYU00HFfamQeq";
+//export const STRIPE_TOKEN ="pk_test_51HkF5rLlg8czBHMMsWjtoCTXXsNDB6JNmtzHs7Ai3MeOkAnKmhQpmtZUnLbZF5CepEdFFaiDO3JcXReuXsjQkoYU00HFfamQeq";
