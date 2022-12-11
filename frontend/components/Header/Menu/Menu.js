@@ -81,8 +81,26 @@ function MenuOptions(props) {
               Mis pedidos
             </Menu.Item>
           </Link>
-
-          <Menu.Item onClick={logout}>Cerrar sesion</Menu.Item>
+          <Link href="/wishlist">
+            <Menu.Item>
+              <Icon name="heart outline" />
+              Mi lista
+            </Menu.Item>
+          </Link>
+          <Link href="/account">
+            <Menu.Item>
+              <Icon name="user outline" />
+              {user.name} {user.lastname}
+            </Menu.Item>
+          </Link>
+          <Link href="/cart">
+            <Menu.Item className="m-0">
+              <Icon name="cart" />
+            </Menu.Item>
+          </Link>
+          <Menu.Item className="m-0" onClick={logout}>
+            <Icon name="power off" />
+          </Menu.Item>
         </>
       ) : (
         <Menu.Item onClick={onShowModal}>
